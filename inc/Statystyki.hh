@@ -1,5 +1,5 @@
-#ifndef WYRAZENIEZESP_HH
-#define WYRAZENIEZESP_HH
+#ifndef STATYSTYKI_HH
+#define STATYSTYKI_HH
 
 
 
@@ -9,5 +9,7 @@
 /*
  * Tu nalezy zdefiniowac funkcje, ktore definiuja model statystyki 
  */
+void stat(int dobre ,int zle);
+
 
 #endif
