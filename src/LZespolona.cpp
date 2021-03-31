@@ -6,60 +6,60 @@
 /*!
  * Realizuje dodanie dwoch liczb zespolonych.
  * Argumenty:
- *    Skl1 - pierwszy skladnik dodawania,
+ *    this - pierwszy skladnik dodawania,
  *    Skl2 - drugi skladnik dodawania.
  * Zwraca:
  *    Sume dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona operator + (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona LZespolona::operator + (LZespolona  Skl2) const
 {
   LZespolona  Wynik;
 
-  Wynik.re = Skl1.re + Skl2.re;
-  Wynik.im = Skl1.im + Skl2.im;
+  Wynik.re = this->re + Skl2.re;
+  Wynik.im = this->im + Skl2.im;
   return Wynik;
 }
 /*!
  * Odsyla liczbe przed ktora jest +, a nie jest to operacja dodawania.
  * Argumenty:
- *    Skl1 - skladnik ,
+ *    this - skladnik ,
  *    
  * Zwraca:
  *    Niezmieniony skladnik.
  */
-LZespolona operator + (LZespolona  Skl1)
+LZespolona LZespolona::operator + () const
 {
-  return Skl1;
+  return *this;
 }
 /*!
  * Realizuje odejmowanie dwoch liczb zespolonych.
  * Argumenty:
- *    Skl1 - odjemna,
+ *    this - odjemna,
  *    Skl2 - odjemnik.
  * Zwraca:
  *    Roznice dwoch skladnikow przekazanych jako parametry.
  */
-LZespolona operator - (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona LZespolona::operator - (LZespolona  Skl2) const
 {
   LZespolona  Wynik;
-
-  Wynik.re = Skl1.re - Skl2.re;
-  Wynik.im = Skl1.im - Skl2.im;
+  Wynik.re = this->re - Skl2.re;
+  Wynik.im = this->im - Skl2.im;
   return Wynik;
 }
 /*!
  * Zmienia znak danej liczby przed ktora stoi -, a nie jest to odejmowanie.
  * Argumenty:
- *    Skl1 - skladnik.
+ *    this - skladnik.
  *    
  * Zwraca:
  *    Skladnik z przeciwnymi znakami czesci zespolonej i urojonej.
  */
-LZespolona operator - (LZespolona  Skl1)
+LZespolona LZespolona::operator - () const
 {
-  Skl1.re = -Skl1.re;
-  Skl1.im = -Skl1.im;
-  return Skl1;
+  LZespolona Wynik;
+  Wynik.re = -this->re;
+  Wynik.im = -this->im;
+  return Wynik;
 }
 /*!
  * Realizuje mnozenie dwoch liczb zespolonych.
@@ -69,12 +69,11 @@ LZespolona operator - (LZespolona  Skl1)
  * Zwraca:
  *    Iloczyn dwoch liczb zespolonych.
  */
-LZespolona operator * (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona LZespolona::operator * (LZespolona  Skl2) const
 {
   LZespolona  Wynik;
-
-  Wynik.re=(Skl1.re * Skl2.re)-(Skl1.im * Skl2.im);
-  Wynik.im=(Skl1.re * Skl2.im)+(Skl1.im * Skl2.re);
+  Wynik.re=(this->re * Skl2.re)-(this->im * Skl2.im);
+  Wynik.im=(this->re * Skl2.im)+(this->im * Skl2.re);
   return Wynik;
 }
 /*!
@@ -85,10 +84,25 @@ LZespolona operator * (LZespolona  Skl1,  LZespolona  Skl2)
  * Zwraca:
  *    Liczbe zespolona pomnozona przez liczbe rzeczywista.
  */
-LZespolona operator * (LZespolona  Skl1,double Skl2)
+LZespolona LZespolona::operator * (double Skl2) const
 {
   LZespolona  Wynik;
-
+  Wynik.re=(this->re * Skl2);
+  Wynik.im=(this->im * Skl2);
+  return Wynik;
+}
+/*!
+ * Realizuje mnozenia liczby zespolonej przez liczbe rzeczywista.
+ * Jesli liczba rzeczywista stoi przed liczba zespolona.
+ * Argumenty:
+ *    Skl1 - liczba zespolona,
+ *    Skl2 - liczba rzeczywista.
+ * Zwraca:
+ *    Liczbe zespolona pomnozona przez liczbe rzeczywista.
+ */
+LZespolona operator * (double  Skl2,const LZespolona &Skl1)
+{
+  LZespolona  Wynik;
   Wynik.re=(Skl1.re * Skl2);
   Wynik.im=(Skl1.im * Skl2);
   return Wynik;
@@ -103,15 +117,25 @@ LZespolona operator * (LZespolona  Skl1,double Skl2)
  * Zwraca:
  *    Liczbe zespolona podzielona przez liczbe rzeczywista.
  */
-LZespolona operator / (LZespolona  Skl1,double  Skl2)
+LZespolona LZespolona::operator / (double  Skl2) const
 {
   LZespolona  Wynik;
   if (Skl2==0)
   {
     std::cerr << "Blad nie dziel przez zero"<< std::endl;
   }
-  Wynik.re=Skl1.re/(Skl2);
-  Wynik.im=Skl1.im/(Skl2);
+  Wynik.re=this->re/(Skl2);
+  Wynik.im=this->im/(Skl2);
+  return Wynik;
+}
+/*!
+ * Tworzy sprzezenie liczby zespolonej
+ */
+LZespolona sprzezenie(LZespolona Skl1) 
+{
+  LZespolona  Wynik;
+  Wynik.re=Skl1.re;
+  Wynik.im=-Skl1.im;
   return Wynik;
 }
 /*!
@@ -124,18 +148,17 @@ LZespolona operator / (LZespolona  Skl1,double  Skl2)
  * Zwraca:
  *    Iloraz liczb zespolonych.
  */
-LZespolona operator / (LZespolona  Skl1,  LZespolona  Skl2)
+LZespolona LZespolona::operator / (LZespolona  Skl2) const
 {
-  LZespolona  Wynik,spzerzenie,u,d;
+  LZespolona  Wynik,sprzeze,u,d;
   int s;
   if (Skl2.re==0 && Skl2.im==0)
   {
     std::cerr << "Blad nie dziel przez zero"<< std::endl;
   }
-  spzerzenie.re=Skl2.re;
-  spzerzenie.im=-Skl2.im;
-  u=Skl1 * spzerzenie;
-  d=Skl2 * spzerzenie;
+  sprzeze=sprzezenie(Skl2);
+  u=*this * sprzeze;
+  d=Skl2 * sprzeze;
   s=(d.re+d.im);
   Wynik=u / s;
   return Wynik;
@@ -149,9 +172,9 @@ LZespolona operator / (LZespolona  Skl1,  LZespolona  Skl2)
  *    True-jesli czesci zeczywiste i urojone sa rowne.
  *    False-jesli czesci zeczywiste albo urojone sa sobie nie rowne.
  */
-bool operator ==(LZespolona Skl1,  LZespolona Skl2)
+bool LZespolona::operator ==(LZespolona Skl2) const
 {
-  if ((Skl1.re==Skl2.re) && (Skl1.im==Skl2.im))
+  if ((this->re==Skl2.re) && (this->im==Skl2.im))
     return true;
   return false;
 }

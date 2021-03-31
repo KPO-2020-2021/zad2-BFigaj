@@ -16,3 +16,17 @@ TEST_CASE("test LZespolona Suma"){
     
     CHECK(x+y == z);
 }
+TEST_CASE("test LZespolona Mnozenie"){
+    LZespolona x, y, z;
+
+    x.re = 1;
+    x.im = 1;
+
+    y.re = 1;
+    y.im = 0;
+
+    z.re = 3;
+    z.im = 3;
+    
+    CHECK(3*x*y == z);
+}

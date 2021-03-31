@@ -14,20 +14,28 @@
 struct  LZespolona {
   double   re;    /*! Pole repezentuje czesc rzeczywista. */
   double   im;    /*! Pole repezentuje czesc urojona. */
+  LZespolona operator + (LZespolona  Skl2) const;
+  LZespolona operator + () const;
+  LZespolona operator - (LZespolona  Skl2) const;
+  LZespolona operator - () const;
+  LZespolona operator * (LZespolona  Skl2) const;
+  LZespolona operator * (double  Skl2) const;
+  LZespolona operator / (double  Skl2) const;
+  
+  LZespolona operator / (LZespolona  Skl2) const;
+  bool operator == (LZespolona Skl2) const;
 };
 
 
 /*
  * Dalej powinny pojawic sie zapowiedzi definicji przeciazen operatorow
  */
-LZespolona operator + (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona operator + (LZespolona  Skl1);
-LZespolona operator - (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona operator - (LZespolona  Skl1);
-LZespolona operator * (LZespolona  Skl1,  LZespolona  Skl2);
-LZespolona operator * (LZespolona  Skl1,  double  Skl2);
-LZespolona operator / (LZespolona  Skl1,  double  Skl2);
-LZespolona operator / (LZespolona  Skl1,  LZespolona  Skl2);
-bool operator == (LZespolona Skl1,  LZespolona Skl2);
+LZespolona operator * (double  Skl2,const LZespolona &Skl1);
+LZespolona sprzezenie (LZespolona Skl1);
+
+
+
+
+
 
 #endif
