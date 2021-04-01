@@ -121,9 +121,13 @@ LZespolona operator * (double  Skl2,const LZespolona &Skl1)
 LZespolona LZespolona::operator / (double  Skl2) const
 {
   LZespolona  Wynik;
+
   if (Skl2==0)
   {
     std::cerr << "Blad nie dziel przez zero"<< std::endl;
+    Wynik.re=0;
+    Wynik.im=0;
+    return Wynik;
   }
   Wynik.re=this->re/(Skl2);
   Wynik.im=this->im/(Skl2);
@@ -156,6 +160,7 @@ LZespolona LZespolona::operator / (LZespolona  Skl2) const
   if (Skl2.re==0 && Skl2.im==0)
   {
     std::cerr << "Blad nie dziel przez zero"<< std::endl;
+    return Skl2;
   }
   sprzeze=sprzezenie(Skl2);
   u=*this * sprzeze;
@@ -179,13 +184,13 @@ bool LZespolona::operator ==(LZespolona Skl2) const
     return true;
   return false;
 }
-LZespolona LZespolona::operator +=(LZespolona Skl2) const
+LZespolona LZespolona::operator += (LZespolona Skl2) const
 {
   Skl2.re+=this->re;
   Skl2.im+=this->im;
   return Skl2;
 }
-LZespolona LZespolona::operator /=(LZespolona Skl2) const
+LZespolona LZespolona::operator /= (LZespolona Skl2) const
 {
   Skl2=*this / Skl2;
   return Skl2;

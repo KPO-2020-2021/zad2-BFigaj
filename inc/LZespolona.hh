@@ -23,8 +23,8 @@ struct  LZespolona {
   LZespolona operator / (double  Skl2) const;
   LZespolona operator / (LZespolona  Skl2) const;
   bool operator == (LZespolona Skl2) const;
-  LZespolona operator +=(LZespolona Skl2) const;
-  LZespolona operator /=(LZespolona Skl2) const;
+  LZespolona operator += (LZespolona Skl2) const;
+  LZespolona operator /= (LZespolona Skl2) const;
   double arg() const;
 };
 
