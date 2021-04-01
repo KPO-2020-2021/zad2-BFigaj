@@ -1,6 +1,7 @@
 #include <iostream>
+#include <bits/stdc++.h>
 #include "LZespolona.hh"
-
+#define Min_dif 0.01
 
 
 /*!
@@ -174,9 +175,46 @@ LZespolona LZespolona::operator / (LZespolona  Skl2) const
  */
 bool LZespolona::operator ==(LZespolona Skl2) const
 {
-  if ((this->re==Skl2.re) && (this->im==Skl2.im))
+  if ((std::abs(this->re - Skl2.re)<= Min_dif) && (std::abs(this->im - Skl2.im)<= Min_dif))
     return true;
   return false;
 }
-
-
+LZespolona LZespolona::operator +=(LZespolona Skl2) const
+{
+  Skl2.re+=this->re;
+  Skl2.im+=this->im;
+  return Skl2;
+}
+LZespolona LZespolona::operator /=(LZespolona Skl2) const
+{
+  Skl2=*this / Skl2;
+  return Skl2;
+}
+/*!
+ * Funkcja zwraca argument glowny liczby zespolonej
+ * 
+ */
+double LZespolona::arg() const
+{
+  double wynik;
+  if (this->re > 0)
+  {
+    wynik=atan2(this->im,this->re);
+    std::cout << wynik  << std::endl;
+    return wynik;
+  }
+  else
+  {
+    if(this->re < 0)
+    {
+      wynik=atan2(this->im,this->re)+3.14;
+      std::cout << wynik << std::endl;
+      return wynik;
+    }
+    else
+    {
+      std::cerr << "Blad nie zdefinowane dzialanie" << std::endl;
+      return 0;
+    }
+  }
+}

@@ -21,14 +21,17 @@ struct  LZespolona {
   LZespolona operator * (LZespolona  Skl2) const;
   LZespolona operator * (double  Skl2) const;
   LZespolona operator / (double  Skl2) const;
-  
   LZespolona operator / (LZespolona  Skl2) const;
   bool operator == (LZespolona Skl2) const;
+  LZespolona operator +=(LZespolona Skl2) const;
+  LZespolona operator /=(LZespolona Skl2) const;
+  double arg() const;
 };
 
 
 /*
- * Dalej powinny pojawic sie zapowiedzi definicji przeciazen operatorow
+ * Poniewaz operatora mnozenia gdzie liczba jest z lewej 
+ * da sie zrobic w formie metody jest jako funkcja 
  */
 LZespolona operator * (double  Skl2,const LZespolona &Skl1);
 LZespolona sprzezenie (LZespolona Skl1);
